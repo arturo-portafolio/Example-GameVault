@@ -23,7 +23,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 // 1. Hero Section
 function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-visible pt-20 pb-16" />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-visible pt-20 pb-16">
       {/* Background Video/Image Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
