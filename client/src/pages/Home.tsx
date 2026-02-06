@@ -23,7 +23,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 // 1. Hero Section
 function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-visible pt-20 pb-16" />
       {/* Background Video/Image Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -65,7 +65,7 @@ function Hero() {
       </div>
 
       {/* Scrolling Text Decor */}
-      <div className="absolute -bottom-6 md:-bottom-10 w-full overflow-hidden py-4 border-t border-white/5 bg-black/40 backdrop-blur-sm">
+      <div className="absolute bottom-0 translate-y-6 md:translate-y-10 w-full overflow-hidden py-4 border-t border-white/5 bg-black/40 backdrop-blur-sm">
         <div className="flex gap-8 animate-marquee whitespace-nowrap text-white/20 font-display font-bold text-4xl uppercase">
           <span>PlayStation</span> • <span>Xbox</span> • <span>Nintendo</span> • <span>PC Gaming</span> • <span>VR Ready</span> • <span>Next Gen</span> • <span>PlayStation</span> • <span>Xbox</span> • <span>Nintendo</span>
         </div>
