@@ -89,8 +89,8 @@ function Catalog({ onOpenDetail }: { onOpenDetail: (g: Game) => void }) {
   return (
     <section id="catalog" className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div>
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
+          <div className="text-center md:text-left">
             <h2 className="text-4xl font-display font-bold text-white mb-2">Game <span className="text-primary">Catalog</span></h2>
             <p className="text-muted-foreground">Discover over 1000+ titles available for rent or purchase.</p>
           </div>
