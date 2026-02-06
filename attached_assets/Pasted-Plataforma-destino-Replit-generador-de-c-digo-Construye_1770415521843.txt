@@ -1,0 +1,280 @@
+Plataforma destino:
+- Replit (generador de código). Construye directamente el proyecto, no otro prompt intermedio.
+
+Objetivo:
+- Generar una aplicación web de UNA SOLA PÁGINA (SPA) llamada **GameVault** para vender y alquilar videojuegos y accesorios de **PlayStation, Xbox, Nintendo y PC**.
+- Todo el contenido debe verse dentro de una MISMA pestaña (una sola vista), organizada por secciones desplazables (scroll) enlazadas desde la navbar.
+- SIN base de datos, SIN backend y SIN configuración de ORM. Todos los datos son mock en memoria (arrays/objetos en el front).
+
+Alcance (MVP en una sola página):
+- Vista única con secciones: Home, Catálogo, Detalle de juego, Alquiler, Trade-In, Membresía, Carrito/Checkout, Contacto.
+- Navegación interna por anclas/scroll (no rutas separadas, no React Router).
+- Lógica básica de carrito, compra vs alquiler, duración del alquiler, cálculo de totales y wishlist en memoria.
+- Footer con íconos de redes sociales simuladas, número de teléfono y pequeño ícono de chatbot.
+
+Roles de usuario:
+- Visitante/cliente (único rol). No hay autenticación real ni panel de administración.
+
+Funcionalidades clave:
+- Navbar fija (sticky) con enlaces a secciones dentro de la misma página:
+  - Home
+  - Catálogo
+  - Alquiler
+  - Trade-In
+  - Membresía
+  - Carrito/Checkout
+  - Contacto
+- Home:
+  - Hero principal con título “GameVault”, subtítulo y CTA que haga scroll al Catálogo.
+  - Banner destacado para promociones (por ejemplo, “2x1 en alquiler de fin de semana”).
+- Catálogo:
+  - Grid de cards de juegos.
+  - Buscador por texto (nombre del juego).
+  - Filtros por:
+    - Plataforma (PlayStation, Xbox, Nintendo, PC).
+    - Género (acción, aventura, deportes, RPG, etc.).
+    - Rango de precio de compra.
+    - Estado (nuevo, usado, solo alquiler, agotado).
+  - Paginación simple mock (por ejemplo, 12 juegos por página) implementada en el front.
+- Cards de juego:
+  - Imagen placeholder.
+  - Título, plataforma, género.
+  - Precio de compra y precio de alquiler.
+  - Badges (por ejemplo: “Nuevo”, “Usado”, “Top”, “En oferta”).
+  - Rating con estrellas (simulado).
+  - Botones:
+    - “Ver detalle” (abre sección/área de Detalle de juego dentro de la misma página, sin cambiar de ruta).
+    - “Agregar al carrito” (elige modo por defecto, por ejemplo compra).
+    - Ícono de corazón para agregar/quitar de wishlist.
+- Detalle de juego:
+  - Mostrarse en un panel o sección destacada dentro de la misma página (puede ser un panel deslizante o un bloque debajo del catálogo).
+  - Información ampliada: descripción, más imágenes placeholder, requisitos (para PC), tags, rating ampliado.
+  - Controles:
+    - Selector “Compra” vs “Alquiler”.
+    - Para “Alquiler”: selector de duración (7/14/30 días).
+    - Botón “Agregar al carrito” respetando modo y duración.
+- Alquiler:
+  - Sección explicando cómo funciona el alquiler (duraciones, políticas, recargos por retraso simulados).
+  - Cards/resumen de los planes de alquiler (7, 14, 30 días) con precios relativos.
+- Trade-In:
+  - Sección con formulario para simular entrega de juegos usados:
+    - Campos: título del juego, plataforma, estado (como nuevo, bueno, aceptable), tipo (físico/digital fake), comentario opcional.
+  - Mostrar un cálculo estimado de crédito en base al estado (lógica simple en el front).
+  - Listado mock de ejemplos de trade-in “recientes” (solo datos de ejemplo).
+- Membresía:
+  - Presentar niveles de membresía (por ejemplo: Bronze, Silver, Gold).
+  - Mostrar beneficios por nivel: descuento en compras, descuento en alquileres, días extra de alquiler, acceso anticipado.
+  - Botón para “Seleccionar membresía” que simplemente guarda el nivel elegido en estado y lo aplica al cálculo del carrito (descuento simulado).
+- Carrito/Checkout:
+  - Carrito accesible desde un icono en la navbar (por ejemplo, icono de carrito que abre panel lateral o sección).
+  - Listado de ítems:
+    - Título, plataforma, modo (compra/alquiler), duración (si alquiler), precio unitario, subtotal.
+  - Posibilidad de:
+    - Cambiar entre compra y alquiler para cada ítem.
+    - Cambiar duración de alquiler para ítems en modo alquiler.
+    - Eliminar ítems del carrito.
+  - Cálculo de total:
+    - Subtotal sin descuentos.
+    - Descuento por membresía (si hay), mostrado por separado.
+    - Total final.
+  - Sección de “Checkout” dentro de la misma vista:
+    - Formulario simple (nombre, email, dirección ficticia).
+    - Botón “Confirmar pedido” que NO procesa pagos reales, solo muestra mensaje de éxito y limpia el carrito.
+- Wishlist:
+  - Lista de juegos marcados con corazón, visible en una sub-sección del Catálogo o del Home.
+  - Guardada solo en estado (sin persistencia real).
+- Contacto:
+  - Formulario: nombre, email, asunto, mensaje.
+  - Validación básica de campos.
+  - Al enviar, no se manda nada real, solo mostrar mensaje de éxito.
+- Footer:
+  - Sección fija al final de la página con:
+    - Iconos de redes sociales simuladas (Facebook, Instagram, X/Twitter, TikTok).
+    - Número de teléfono de ejemplo.
+    - Pequeño ícono de chatbot (burbuja de chat en una esquina) que al hacer clic abra un cuadro de texto simulado de chat (sin lógica real de IA, solo placeholder).
+
+Modelo de datos (en memoria, SIN base de datos):
+- Implementar datos mock en archivos TypeScript dentro de `src/data/`.
+- `Game`:
+  - id: string
+  - title: string
+  - platform: "PlayStation" | "Xbox" | "Nintendo" | "PC"
+  - genre: string
+  - purchasePrice: number
+  - rentalPrice: number
+  - availability: "disponible" | "agotado" | "solo alquiler"
+  - condition: "nuevo" | "usado"
+  - rating: number (0–5)
+  - isFeatured: boolean
+  - isOnSale: boolean
+  - imageUrl: string (placeholder)
+  - description: string
+- `Membership`:
+  - id: string
+  - name: string
+  - purchaseDiscountPercent: number
+  - rentalDiscountPercent: number
+  - extraRentalDays: number
+  - description: string
+- `CartItem`:
+  - gameId: string
+  - mode: "compra" | "alquiler"
+  - rentalDays?: 7 | 14 | 30
+  - unitPrice: number
+  - quantity: number
+- `TradeInRequest` (solo para tipar el formulario, no persiste):
+  - title: string
+  - platform: string
+  - condition: "como nuevo" | "bueno" | "aceptable"
+  - type: "fisico" | "digital"
+  - notes?: string
+
+Endpoints API:
+- NO crear endpoints, NO configurar servidor, NO fetch a APIs externas.
+- Toda la lógica se implementa en el front usando datos mock.
+
+Reglas de negocio:
+- Si un juego está “agotado”, no permitir agregarlo al carrito para compra ni alquiler.
+- Si `availability` es “solo alquiler”, ocultar o desactivar opción de compra.
+- Precios de alquiler pueden calcularse como:
+  - base rentalPrice para 7 días.
+  - 1.5x para 14 días.
+  - 2x para 30 días. (Ajustar valores en el front.)
+- Descuentos por membresía:
+  - Aplicar porcentaje correspondiente a compras y alquileres sobre subtotales antes de impuestos (si se simulan).
+- Cálculo de crédito de Trade-In:
+  - Definir multiplicadores, por ejemplo:
+    - “como nuevo”: 40% del precio de compra original.
+    - “bueno”: 30%.
+    - “aceptable”: 20%.
+- Wishlist:
+  - Agregar/quitar por id de juego.
+  - Un juego no debe aparecer duplicado en wishlist o carrito.
+
+Integraciones:
+- No integrar pasarelas de pago ni servicios externos.
+- Íconos de redes sociales y chatbot pueden ser SVG simples o íconos basados en Tailwind/React (sin dependencia pesada adicional si no es necesario).
+
+Autenticación y autorización:
+- No implementar login/registro.
+- Simular todo como usuario anónimo.
+
+Validaciones y estados de error:
+- Formularios (Contacto, Checkout, Trade-In):
+  - Campos obligatorios marcados claramente.
+  - Mostrar mensajes de error debajo del campo (por ejemplo: “Este campo es obligatorio”).
+  - Validar formato de email básico.
+- Acciones de carrito:
+  - No permitir cantidad menor a 1.
+  - Deshabilitar botones “Agregar al carrito” cuando no sea posible (ej. juego agotado).
+- Mensajes de feedback:
+  - Toasts o alerts discretos para:
+    - “Juego agregado al carrito”.
+    - “Juego agregado a wishlist”.
+    - “Formulario enviado correctamente”.
+
+UX/Accesibilidad:
+- Tema oscuro gamer con acentos neón:
+  - Fondo principal oscuro (ej. #050816).
+  - Acentos neón en verdes, púrpuras o cian (por ejemplo, #22c55e, #8b5cf6, #06b6d4).
+- Tipografía legible, alto contraste entre texto y fondo.
+- Navbar fija con sombra ligera y fondo semi-transparente para que se distinga del contenido.
+- Navegación por teclado:
+  - Foco visible en botones, links y campos.
+  - Orden lógico de tabulación.
+- Uso de atributos ARIA donde aplique (por ejemplo, para modales/paneles del carrito y detalle de juego).
+- Diseño responsive:
+  - Mobile-first.
+  - En móviles: navbar tipo hamburguesa, cards en una sola columna.
+  - En desktop: 3–4 columnas en el catálogo, panel lateral de carrito opcional.
+- Animaciones suaves:
+  - Transiciones ligeras en hover de botones y cards.
+  - Evitar animaciones agresivas que dificulten la lectura.
+
+Requisitos técnicos:
+- Stack sugerido:
+  - **React + Vite + TypeScript + Tailwind CSS**.
+- Estructura de carpetas y archivos (ejemplo):
+  - `index.html`
+  - `vite.config.ts`
+  - `tsconfig.json`
+  - `postcss.config.cjs`
+  - `tailwind.config.cjs`
+  - `package.json`
+  - `src/`
+    - `main.tsx`
+    - `App.tsx`
+    - `index.css` (incluir Tailwind base, components, utilities)
+    - `data/`
+      - `games.ts`
+      - `memberships.ts`
+    - `types/`
+      - `game.ts`
+      - `membership.ts`
+      - `cart.ts`
+    - `hooks/`
+      - `useCart.ts`
+      - `useFilters.ts`
+      - `useMembership.ts`
+    - `components/`
+      - `Navbar.tsx`
+      - `Hero.tsx`
+      - `GameCard.tsx`
+      - `FiltersBar.tsx`
+      - `Pagination.tsx`
+      - `GameDetailPanel.tsx`
+      - `CartPanel.tsx`
+      - `WishlistStrip.tsx`
+      - `TradeInForm.tsx`
+      - `MembershipCards.tsx`
+      - `ContactForm.tsx`
+      - `Footer.tsx`
+      - `ChatbotIcon.tsx` (y pequeño panel de chat simulado)
+    - `sections/`
+      - `HomeSection.tsx`
+      - `CatalogSection.tsx`
+      - `RentalInfoSection.tsx`
+      - `TradeInSection.tsx`
+      - `MembershipSection.tsx`
+      - `CheckoutSection.tsx`
+      - `ContactSection.tsx`
+- NO crear archivos relacionados con bases de datos (por ejemplo: `schema.prisma`, `db.ts`, `supabase.ts`, etc.).
+- NO usar React Router ni similares: toda la lógica y navegación en una sola página con scroll y componentes condicionales.
+
+Semillas de datos iniciales:
+- Poblar `games.ts` con al menos:
+  - 3–4 juegos por plataforma (PlayStation, Xbox, Nintendo, PC).
+  - Mezcla de géneros (acción, aventura, deportes, carreras, RPG).
+  - Estados variados (nuevo, usado, solo alquiler, agotado).
+- Poblar `memberships.ts` con al menos 3 niveles:
+  - Bronze (por ejemplo 5% en compras, 10% en alquileres).
+  - Silver.
+  - Gold.
+- Usar URLs de imágenes placeholder (por ejemplo, servicios genéricos o patrones de color) como strings, sin necesidad de descargar nada.
+
+Pruebas y criterios de aceptación:
+- No es obligatorio generar tests automatizados.
+- La app se considera correcta si:
+  - Se ve bien en mobile y desktop.
+  - El usuario puede:
+    - Buscar y filtrar juegos en el catálogo.
+    - Ver detalle de un juego sin cambiar de página.
+    - Agregar juegos al carrito como compra o alquiler.
+    - Cambiar duración de alquiler y ver el total actualizado.
+    - Seleccionar una membresía y ver su efecto en el total.
+    - Marcar y desmarcar juegos como wishlist.
+    - Rellenar formularios de Trade-In, Checkout y Contacto y ver mensajes de éxito.
+  - No se realizan peticiones reales a servidores ni configuraciones de base de datos.
+
+Despliegue/Configuración (en Replit):
+- Configurar el proyecto como app React + Vite + TypeScript.
+- Asegurarse de incluir Tailwind CSS:
+  - Importar estilos de Tailwind en `src/index.css`.
+- Scripts en `package.json` (ejemplo):
+  - `"dev": "vite"`
+  - `"build": "vite build"`
+  - `"preview": "vite preview"`
+- En Replit:
+  - Usar el comando `npm install` para instalar dependencias.
+  - Ejecutar `npm run dev` para levantar el servidor de desarrollo.
+- Toda la navegación y contenido debe funcionar desde una única pestaña del navegador, sin abrir nuevas ventanas ni rutas adicionales.
