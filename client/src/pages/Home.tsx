@@ -65,7 +65,7 @@ function Hero() {
       </div>
 
       {/* Scrolling Text Decor */}
-      <div className="absolute -bottom-2 md:-bottom-3 w-full overflow-hidden py-4 border-t border-white/5 bg-black/40 backdrop-blur-sm">
+      <div className="absolute -bottom-6 md:-bottom-10 w-full overflow-hidden py-4 border-t border-white/5 bg-black/40 backdrop-blur-sm">
         <div className="flex gap-8 animate-marquee whitespace-nowrap text-white/20 font-display font-bold text-4xl uppercase">
           <span>PlayStation</span> • <span>Xbox</span> • <span>Nintendo</span> • <span>PC Gaming</span> • <span>VR Ready</span> • <span>Next Gen</span> • <span>PlayStation</span> • <span>Xbox</span> • <span>Nintendo</span>
         </div>
