@@ -1,26 +1,26 @@
-Example GameVault
+## Example GameVault
 
 Example GameVault is a modern web application for browsing, renting, and purchasing video games across multiple platforms and genres.
 
-The project features a clean and responsive user interface, advanced filtering and search capabilities, and a structured catalog of games with detailed information such as pricing, ratings, availability, and platforms.
+The project focuses on a clean, responsive user interface, advanced filtering and search functionality, and a structured game catalog that includes pricing, ratings, availability, and platform support.
 
-Live Demo
+## Live Demo
 
-https://example-game-vault.vercel.app/
+https://example-game-vault.vercel.app
 
-Key Features
+## Key Features
 
-Browse a curated game catalog by platform and genre
+Browse a curated video game catalog by platform and genre
 
-Search and filter games in real time
+Real-time search and filtering
 
-Membership tiers with benefits and discounts
+Membership tiers with discounts and benefits
 
-Responsive design optimized for desktop and mobile
+Responsive design for desktop and mobile devices
 
-Built with modern frontend technologies
+Clean and scalable frontend architecture
 
-Tech Stack
+## Tech Stack
 
 TypeScript
 
@@ -32,4 +32,6 @@ Tailwind CSS
 
 Deployed on Vercel
 
-This repository serves as a frontend-focused project showcasing modern UI/UX practices and clean TypeScript architecture.
+## Project Purpose
+
+This repository serves as a frontend-focused project demonstrating modern UI/UX practices, component-based architecture, and TypeScript-driven development.
